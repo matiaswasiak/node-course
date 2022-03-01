@@ -1,9 +1,15 @@
+// first me listen the event, and then we would emmit it
+
 const EventEmitter = require("events");
 
 const customEmitter = new EventEmitter();
 
-customEmitter.on("response", () => {
-  console.log(`data received `);
+customEmitter.on("response", (name, id) => {
+  console.log(`data received ${name} with id:${id}`);
 });
 
-customEmitter.emit("response");
+customEmitter.on("response", () => {
+  console.log(`some other logic here `);
+});
+
+customEmitter.emit("response", "Matias", 20);
